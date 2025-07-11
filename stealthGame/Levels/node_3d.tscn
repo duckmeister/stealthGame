@@ -1,0 +1,314 @@
+[gd_scene load_steps=20 format=3 uid="uid://dihw38na1f5dm"]
+
+[ext_resource type="Script" uid="uid://blq2kjyolb1un" path="res://scripts/game_state.gd" id="1_bn8r8"]
+[ext_resource type="Material" uid="uid://ballllwhrxyjj" path="res://Mats/dark.tres" id="1_knnkr"]
+[ext_resource type="Texture2D" uid="uid://cqhbdfgxmncsf" path="res://textures/grey.png" id="2_bn8r8"]
+[ext_resource type="Material" uid="uid://2lycqc7vxb4y" path="res://Mats/red.tres" id="3_5emcc"]
+[ext_resource type="Material" uid="uid://drkfrohx1obrs" path="res://Mats/green.tres" id="4_mtdkg"]
+[ext_resource type="Material" uid="uid://de4cmpfmsssvq" path="res://Mats/grey.tres" id="5_88f8e"]
+[ext_resource type="PackedScene" uid="uid://b5hoy7mvwr5j" path="res://scenes/control_point.tscn" id="6_u2084"]
+[ext_resource type="PackedScene" uid="uid://cc1m2a1obsyn4" path="res://addons/fpc/character.tscn" id="7_cg0vg"]
+[ext_resource type="PackedScene" uid="uid://cspfs15rdcr2s" path="res://scenes/hud.tscn" id="8_p7u7d"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a202f"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_noarx"]
+sky_material = SubResource("ProceduralSkyMaterial_a202f")
+
+[sub_resource type="Environment" id="Environment_a0tk4"]
+background_mode = 2
+sky = SubResource("Sky_noarx")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a202f"]
+albedo_texture = ExtResource("2_bn8r8")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cptob"]
+albedo_texture = ExtResource("2_bn8r8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jsk3o"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r3fl7"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jka67"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i5arm"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3v7ru"]
+albedo_color = Color(0.687215, 0.687215, 0.687215, 1)
+albedo_texture = ExtResource("2_bn8r8")
+uv1_triplanar = true
+
+[node name="Main" type="Node3D"]
+
+[node name="GameState" type="Node" parent="."]
+script = ExtResource("1_bn8r8")
+
+[node name="Label" type="Label" parent="GameState"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 100
+text = "YOU WIN!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="GameState"]
+wait_time = 10.0
+one_shot = true
+
+[node name="World" type="Node" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
+environment = SubResource("Environment_a0tk4")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Geo" type="Node" parent="."]
+
+[node name="wall6" type="CSGBox3D" parent="Geo"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 2.5, -8.25)
+material_override = ExtResource("1_knnkr")
+use_collision = true
+size = Vector3(16, 5, 0.5)
+material = SubResource("StandardMaterial3D_a202f")
+
+[node name="CSGPolygon3D4" type="CSGPolygon3D" parent="Geo/wall6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, -2.5, 0.5)
+operation = 2
+calculate_tangents = false
+polygon = PackedVector2Array(2.5, 3.8, 3.5, 3.5, 4, 3, 4, 0, 0, 0, 0, 3, 0.5, 3.5, 1.5, 3.8)
+
+[node name="CSGPolygon3D5" type="CSGPolygon3D" parent="Geo/wall6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -2.5, 0.5)
+operation = 2
+calculate_tangents = false
+polygon = PackedVector2Array(2.5, 3.8, 3.5, 3.5, 4, 3, 4, 0, 0, 0, 0, 3, 0.5, 3.5, 1.5, 3.8)
+
+[node name="wall7" type="CSGBox3D" parent="Geo"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.25, 2.5, -16.25)
+material_override = ExtResource("1_knnkr")
+use_collision = true
+size = Vector3(15.5, 5, 0.5)
+material = SubResource("StandardMaterial3D_a202f")
+
+[node name="Floor" type="CSGBox3D" parent="Geo"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+material_override = ExtResource("1_knnkr")
+use_collision = true
+size = Vector3(48, 1, 48)
+material = SubResource("StandardMaterial3D_a202f")
+
+[node name="road" type="CSGBox3D" parent="Geo/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.541016, 0)
+operation = 2
+use_collision = true
+size = Vector3(8, 0.167969, 48)
+material = SubResource("StandardMaterial3D_cptob")
+
+[node name="wall" type="CSGBox3D" parent="Geo/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -24.25)
+material_override = ExtResource("1_knnkr")
+use_collision = true
+size = Vector3(48, 6, 0.5)
+material = SubResource("StandardMaterial3D_a202f")
+
+[node name="wall2" type="CSGBox3D" parent="Geo/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 24.25)
+material_override = ExtResource("1_knnkr")
+use_collision = true
+size = Vector3(48, 6, 0.5)
+material = SubResource("StandardMaterial3D_a202f")
+
+[node name="wall3" type="CSGBox3D" parent="Geo/Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 24.25)
+material_override = ExtResource("1_knnkr")
+use_collision = true
+size = Vector3(48, 6, 0.5)
+material = SubResource("StandardMaterial3D_a202f")
+
+[node name="wall4" type="CSGBox3D" parent="Geo/Floor"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24.25, 2.5, 0)
+material_override = ExtResource("1_knnkr")
+use_collision = true
+size = Vector3(48, 6, 0.5)
+material = SubResource("StandardMaterial3D_a202f")
+
+[node name="wall5" type="CSGBox3D" parent="Geo/Floor"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -29, 2.5, 2.07629e-07)
+material_override = ExtResource("1_knnkr")
+use_collision = true
+size = Vector3(48, 6, 10)
+material = SubResource("StandardMaterial3D_a202f")
+
+[node name="CSGPolygon3D6" type="CSGPolygon3D" parent="Geo/Floor/wall5"]
+transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -1.75, -2, 5.25)
+operation = 2
+calculate_tangents = false
+polygon = PackedVector2Array(2.5, 3.8, 3.5, 3.5, 4, 3, 4, 0, 0, 0, 0, 3, 0.5, 3.5, 1.5, 3.8)
+depth = 7.0
+
+[node name="House" type="CSGBox3D" parent="Geo"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -15.7071, 2.5, 15.7071)
+use_collision = true
+size = Vector3(7, 5, 7)
+material = ExtResource("3_5emcc")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Geo/House"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+operation = 2
+size = Vector3(6.5, 0.25, 6.5)
+material = SubResource("StandardMaterial3D_jsk3o")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Geo/House"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.125, 0)
+operation = 2
+size = Vector3(6.5, 2.75, 6.5)
+material = ExtResource("4_mtdkg")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Geo/House"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.375, -3.375)
+operation = 2
+calculate_tangents = false
+size = Vector3(1.25, 2.25, 0.5)
+material = SubResource("StandardMaterial3D_r3fl7")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Geo/House"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -0.875, -3.375)
+operation = 2
+calculate_tangents = false
+size = Vector3(1.5, 1.25, 0.5)
+material = SubResource("StandardMaterial3D_jka67")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Geo/House"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -0.875, -3.375)
+operation = 2
+calculate_tangents = false
+size = Vector3(1.5, 1.25, 0.5)
+material = SubResource("StandardMaterial3D_i5arm")
+
+[node name="Platform" type="CSGBox3D" parent="Geo"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 2.5, -18)
+use_collision = true
+size = Vector3(12, 5, 12)
+material = SubResource("StandardMaterial3D_3v7ru")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Geo/Platform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -4)
+operation = 2
+polygon = PackedVector2Array(0, 0, -5, 2.5, 0, 2.5)
+depth = 2.0
+material = ExtResource("5_88f8e")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Geo/Platform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -1.25, -2.5)
+use_collision = true
+size = Vector3(2, 2.5, 7)
+material = ExtResource("5_88f8e")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Geo/Platform/CSGBox3D5"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.125, -1.25, 3.5029)
+operation = 2
+polygon = PackedVector2Array(0, 0, 0, 2.5, 5, 2.5)
+depth = 3.0
+material = ExtResource("5_88f8e")
+
+[node name="CSGPolygon3D2" type="CSGPolygon3D" parent="Geo/Platform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, -2.5, 6.2)
+operation = 2
+calculate_tangents = false
+polygon = PackedVector2Array(2.5, 3.8, 3.5, 3.5, 4, 3, 4, 0, 0, 0, 0, 3, 0.5, 3.5, 1.5, 3.8)
+depth = 3.0
+
+[node name="CSGPolygon3D3" type="CSGPolygon3D" parent="Geo/Platform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -2.5, 6.2)
+operation = 2
+calculate_tangents = false
+polygon = PackedVector2Array(2.5, 3.8, 3.5, 3.5, 4, 3, 4, 0, 0, 0, 0, 3, 0.5, 3.5, 1.5, 3.8)
+depth = 3.0
+
+[node name="CapturePoints" type="Node" parent="."]
+
+[node name="ControlPoint" parent="CapturePoints" instance=ExtResource("6_u2084")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 4.9, -16)
+
+[node name="ControlPoint2" parent="CapturePoints" instance=ExtResource("6_u2084")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -10.0503, 0, 10.0503)
+
+[node name="ControlPoint3" parent="CapturePoints" instance=ExtResource("6_u2084")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, -4.76837e-07, -16)
+
+[node name="Character" parent="." instance=ExtResource("7_cg0vg")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1, 0)
+default_reticle = "uid://coqpusufa8a6k"
+controls = {
+&"BACKWARD": "move_B",
+&"CROUCH": "crouch",
+&"FORWARD": "move_F",
+&"JUMP": "jump",
+&"LEFT": "move_L",
+&"PAUSE": "pause",
+&"RIGHT": "move_R",
+&"SPRINT": "sprint"
+}
+
+[node name="Hud" parent="Character" instance=ExtResource("8_p7u7d")]
+
+[node name="stairs" type="CSGCombiner3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0.5)
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.125, 0)
+size = Vector3(1, 0.25, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.375, 0)
+size = Vector3(1, 0.25, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.625, 0)
+size = Vector3(1, 0.25, 1)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.625, 0)
+size = Vector3(1, 0.25, 1)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0.875, 0)
+size = Vector3(1, 0.25, 1)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 1.125, 0)
+size = Vector3(1, 0.25, 1)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 1.375, 0)
+size = Vector3(1, 0.25, 1)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 1.625, 0)
+size = Vector3(1, 0.25, 1)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 1.875, 0)
+size = Vector3(1, 0.25, 1)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="stairs/StaticBody3D"]
+polygon = PackedVector2Array(1.5, -0.25, -6.5, 1.75, -6.5, 2, 1.5, 0)
+
+[connection signal="timeout" from="GameState/Timer" to="GameState" method="_on_timer_timeout"]

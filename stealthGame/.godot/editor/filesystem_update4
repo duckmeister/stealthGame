@@ -1,1 +1,13 @@
-res://node_3d.tscn
+res://geometry/de_staging_vmf_collision_surface_prop_default.res
+res://geometry/de_staging_vmf_import.mesh
+res://scenes/node_3d.tscn
+res://addons/godotvmf/src/VMFConfig.gd
+res://maps/vmf_node.tscn
+res://geometry/uhhh_vmf_collision_surface_prop_default.res
+res://geometry/uhhh_vmf_import.mesh
+res://Levels/mainMenu.tscn
+res://scripts/main_menu.gd
+res://Levels/node_3d.tscn
+res://addons/fpc/character.tscn
+res://scripts/game_state.gd
+res://scripts/control_point.gd
