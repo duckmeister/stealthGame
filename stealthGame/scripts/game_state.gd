@@ -1,6 +1,7 @@
 extends Node
 @onready var label: Label = $Label
 @onready var timer: Timer = $Timer
+@onready var audio_stream_player: AudioStreamPlayer = $"../AudioStreamPlayer"
 
 var points = 0
 
@@ -14,6 +15,7 @@ func add_point():
 	if points == 3:
 		label.show()
 		timer.start()
+		audio_stream_player.play()
 
 
 func _on_timer_timeout() -> void:
