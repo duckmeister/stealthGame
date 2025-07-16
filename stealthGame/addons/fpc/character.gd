@@ -31,6 +31,7 @@ extends CharacterBody3D
 @export var immobile : bool = false
 ## The reticle file to import at runtime. By default are in res://addons/fpc/reticles/. Set to an empty string to remove.
 @export_file var default_reticle
+@export var fov = 90.0
 
 #endregion
 
@@ -470,9 +471,9 @@ func change_reticle(reticle): # Yup, this function is kinda strange
 
 func update_camera_fov():
 	if state == "sprinting":
-		CAMERA.fov = lerp(CAMERA.fov, 85.0, 0.3)
+		CAMERA.fov = lerp(CAMERA.fov, fov + 5, 0.3)
 	else:
-		CAMERA.fov = lerp(CAMERA.fov, 75.0, 0.3)
+		CAMERA.fov = lerp(CAMERA.fov, fov, 0.3)
 
 func handle_pausing():
 	if Input.is_action_just_pressed(controls.PAUSE):

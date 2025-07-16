@@ -1,0 +1,90 @@
+[gd_scene load_steps=11 format=3 uid="uid://b60mnulanspnb"]
+
+[ext_resource type="Texture2D" uid="uid://b4amfrnim4x1" path="res://textures/load_tile.png" id="1_hvy3f"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hvy3f"]
+atlas = ExtResource("1_hvy3f")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ld6su"]
+atlas = ExtResource("1_hvy3f")
+region = Rect2(20, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxk5i"]
+atlas = ExtResource("1_hvy3f")
+region = Rect2(40, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2vi0w"]
+atlas = ExtResource("1_hvy3f")
+region = Rect2(60, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oac0x"]
+atlas = ExtResource("1_hvy3f")
+region = Rect2(80, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_885o0"]
+atlas = ExtResource("1_hvy3f")
+region = Rect2(100, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffs8k"]
+atlas = ExtResource("1_hvy3f")
+region = Rect2(120, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xk13e"]
+atlas = ExtResource("1_hvy3f")
+region = Rect2(140, 0, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v8u3h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hvy3f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ld6su")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bxk5i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2vi0w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oac0x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_885o0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ffs8k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xk13e")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 8.0
+}]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Panel"]
+position = Vector2(576, 324)
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_v8u3h")
+animation = &"new_animation"
+autoplay = "new_animation"

@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://dogy65ruhqh7o"]
+
+[ext_resource type="Material" uid="uid://drkfrohx1obrs" path="res://Mats/green.tres" id="1_2mnka"]
+[ext_resource type="PackedScene" uid="uid://bc0tsqfptysm6" path="res://scenes/interaction_component.tscn" id="3_vxwa0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fxw34"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_vxwa0"]
+
+[node name="Box 1kg" type="RigidBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_fxw34")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = ExtResource("1_2mnka")
+mesh = SubResource("BoxMesh_vxwa0")
+
+[node name="InteractionComponent" parent="." node_paths=PackedStringArray("obj_ref") instance=ExtResource("3_vxwa0")]
+obj_ref = NodePath("..")

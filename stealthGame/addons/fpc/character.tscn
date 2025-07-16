@@ -1,8 +1,8 @@
 [gd_scene load_steps=22 format=3 uid="uid://cc1m2a1obsyn4"]
 
 [ext_resource type="Script" uid="uid://bh0frp310b0cx" path="res://addons/fpc/character.gd" id="1_0t4e8"]
-[ext_resource type="Script" uid="uid://cv4vtpbq7bb76" path="res://addons/fpc/EditorModule.gd" id="3_v3ckk"]
 [ext_resource type="Script" uid="uid://c1rykj8mnv7jv" path="res://addons/fpc/debug.gd" id="3_x1wcc"]
+[ext_resource type="PackedScene" uid="uid://bmsa3i4fg1inw" path="res://scenes/interaction_controller.tscn" id="4_bx7cj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kp17n"]
 albedo_color = Color(0.909804, 0.596078, 0, 1)
@@ -159,7 +159,7 @@ loop_mode = 1
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera:position:x")
+tracks/0/path = NodePath("Camera3D:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -170,7 +170,7 @@ tracks/0/keys = {
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Camera:position:y")
+tracks/1/path = NodePath("Camera3D:position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -186,7 +186,7 @@ loop_mode = 1
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera:position:x")
+tracks/0/path = NodePath("Camera3D:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -197,7 +197,7 @@ tracks/0/keys = {
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Camera:position:y")
+tracks/1/path = NodePath("Camera3D:position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -213,7 +213,7 @@ loop_mode = 1
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera:position:x")
+tracks/0/path = NodePath("Camera3D:position:x")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -224,7 +224,7 @@ tracks/0/keys = {
 tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Camera:position:y")
+tracks/1/path = NodePath("Camera3D:position:y")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -245,7 +245,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera:rotation")
+tracks/0/path = NodePath("Camera3D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -257,7 +257,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Camera:position")
+tracks/1/path = NodePath("Camera3D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -273,7 +273,7 @@ length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera:rotation")
+tracks/0/path = NodePath("Camera3D:rotation")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -289,7 +289,7 @@ length = 1.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera:rotation")
+tracks/0/path = NodePath("Camera3D:rotation")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -301,7 +301,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Camera:position")
+tracks/1/path = NodePath("Camera3D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -317,7 +317,7 @@ length = 1.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera:rotation")
+tracks/0/path = NodePath("Camera3D:rotation")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -329,7 +329,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Camera:position")
+tracks/1/path = NodePath("Camera3D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -345,7 +345,7 @@ length = 1.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Camera:rotation")
+tracks/0/path = NodePath("Camera3D:rotation")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -357,7 +357,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Camera:position")
+tracks/1/path = NodePath("Camera3D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -385,16 +385,18 @@ MarginContainer/constants/margin_top = 10
 [sub_resource type="SphereShape3D" id="SphereShape3D_k4wwl"]
 radius = 0.375
 
-[node name="Character" type="CharacterBody3D" node_paths=PackedStringArray("HEAD", "CAMERA", "HEADBOB_ANIMATION", "JUMP_ANIMATION", "CROUCH_ANIMATION", "COLLISION_MESH")]
+[node name="Character" type="CharacterBody3D" node_paths=PackedStringArray("HEAD", "CAMERA", "HEADBOB_ANIMATION", "JUMP_ANIMATION", "CROUCH_ANIMATION", "COLLISION_MESH") groups=["Player"]]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 script = ExtResource("1_0t4e8")
 default_reticle = "res://addons/fpc/reticles/reticle_1.tscn"
 HEAD = NodePath("Head")
-CAMERA = NodePath("Head/Camera")
+CAMERA = NodePath("Head/Camera3D")
 HEADBOB_ANIMATION = NodePath("Head/HeadbobAnimation")
 JUMP_ANIMATION = NodePath("Head/JumpAnimation")
 CROUCH_ANIMATION = NodePath("CrouchAnimation")
 COLLISION_MESH = NodePath("Collision")
+in_air_momentum = false
+motion_smoothing = false
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -413,7 +415,17 @@ libraries = {
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
-[node name="Camera" type="Camera3D" parent="Head"]
+[node name="Camera3D" type="Camera3D" parent="Head"]
+unique_name_in_owner = true
+fov = 90.0
+
+[node name="InteractionRaycast" type="RayCast3D" parent="Head/Camera3D"]
+unique_name_in_owner = true
+target_position = Vector3(0, 0, -2)
+
+[node name="Hand" type="Marker3D" parent="Head/Camera3D/InteractionRaycast"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.74228e-08, 0, -2)
 
 [node name="HeadbobAnimation" type="AnimationPlayer" parent="Head"]
 libraries = {
@@ -457,9 +469,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
 shape = SubResource("SphereShape3D_k4wwl")
 target_position = Vector3(0, 0.5, 0)
 
-[node name="EditorModule" type="Node" parent="."]
-script = ExtResource("3_v3ckk")
-
-[node name="RayCast3D" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
-target_position = Vector3(0, 0, -2)
+[node name="InteractionController" parent="." instance=ExtResource("4_bx7cj")]
+unique_name_in_owner = true

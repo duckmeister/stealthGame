@@ -7,7 +7,7 @@ func _ready() -> void:
 
 func _on_start_pressed() -> void:
 	audio_stream_player.play()
-	get_tree().change_scene_to_file("res://Levels/node_3d.tscn")
+	get_tree().change_scene_to_file("res://Levels/Game.tscn")
 
 func _on_multiplayer_pressed() -> void:
 	audio_stream_player.play()

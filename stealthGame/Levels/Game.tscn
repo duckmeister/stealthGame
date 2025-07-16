@@ -1,15 +1,29 @@
-[gd_scene load_steps=21 format=3 uid="uid://dihw38na1f5dm"]
+[gd_scene load_steps=23 format=3 uid="uid://dihw38na1f5dm"]
 
-[ext_resource type="Script" uid="uid://blq2kjyolb1un" path="res://scripts/game_state.gd" id="1_bn8r8"]
-[ext_resource type="Material" uid="uid://ballllwhrxyjj" path="res://Mats/dark.tres" id="1_knnkr"]
-[ext_resource type="Texture2D" uid="uid://cqhbdfgxmncsf" path="res://textures/grey.png" id="2_bn8r8"]
-[ext_resource type="Material" uid="uid://2lycqc7vxb4y" path="res://Mats/red.tres" id="3_5emcc"]
-[ext_resource type="Material" uid="uid://drkfrohx1obrs" path="res://Mats/green.tres" id="4_mtdkg"]
-[ext_resource type="Material" uid="uid://de4cmpfmsssvq" path="res://Mats/grey.tres" id="5_88f8e"]
-[ext_resource type="PackedScene" uid="uid://b5hoy7mvwr5j" path="res://scenes/control_point.tscn" id="6_u2084"]
-[ext_resource type="PackedScene" uid="uid://cc1m2a1obsyn4" path="res://addons/fpc/character.tscn" id="7_cg0vg"]
-[ext_resource type="PackedScene" uid="uid://cspfs15rdcr2s" path="res://scenes/hud.tscn" id="8_p7u7d"]
-[ext_resource type="AudioStream" uid="uid://d05i7cea7no77" path="res://Audio/YES.mp3" id="10_5emcc"]
+[ext_resource type="PackedScene" uid="uid://cspfs15rdcr2s" path="res://scenes/hud.tscn" id="2_tx4co"]
+[ext_resource type="Theme" uid="uid://30kh5fc6q7p8" path="res://UI/ui_theme.tres" id="3_h107k"]
+[ext_resource type="Material" uid="uid://ballllwhrxyjj" path="res://Mats/dark.tres" id="4_wndho"]
+[ext_resource type="Texture2D" uid="uid://cqhbdfgxmncsf" path="res://textures/grey.png" id="5_lhmk6"]
+[ext_resource type="Material" uid="uid://2lycqc7vxb4y" path="res://Mats/red.tres" id="6_eca5b"]
+[ext_resource type="Material" uid="uid://drkfrohx1obrs" path="res://Mats/green.tres" id="7_qvq5f"]
+[ext_resource type="Material" uid="uid://de4cmpfmsssvq" path="res://Mats/grey.tres" id="8_dasy0"]
+[ext_resource type="PackedScene" uid="uid://b5hoy7mvwr5j" path="res://scenes/control_point.tscn" id="9_wy6ri"]
+[ext_resource type="PackedScene" uid="uid://cc1m2a1obsyn4" path="res://addons/fpc/character.tscn" id="10_nlly1"]
+[ext_resource type="PackedScene" uid="uid://cfefyis82sthe" path="res://scenes/game_state.tscn" id="12_h107k"]
+[ext_resource type="PackedScene" uid="uid://dogy65ruhqh7o" path="res://scenes/box_1_kg.tscn" id="12_tx4co"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vmve8"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a202f"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -25,11 +39,11 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a202f"]
-albedo_texture = ExtResource("2_bn8r8")
+albedo_texture = ExtResource("5_lhmk6")
 uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cptob"]
-albedo_texture = ExtResource("2_bn8r8")
+albedo_texture = ExtResource("5_lhmk6")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jsk3o"]
 
@@ -44,28 +58,67 @@ albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3v7ru"]
 albedo_color = Color(0.687215, 0.687215, 0.687215, 1)
-albedo_texture = ExtResource("2_bn8r8")
+albedo_texture = ExtResource("5_lhmk6")
 uv1_triplanar = true
 
 [node name="Main" type="Node3D"]
 
-[node name="GameState" type="Node" parent="."]
-script = ExtResource("1_bn8r8")
+[node name="Hud" parent="." instance=ExtResource("2_tx4co")]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Label" type="Label" parent="GameState"]
+[node name="Menu" type="Control" parent="Hud"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 100
-text = "YOU WIN!"
-horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="Timer" type="Timer" parent="GameState"]
-wait_time = 10.0
-one_shot = true
+[node name="ColorRect" type="ColorRect" parent="Hud/Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.392157)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Hud/Menu"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 30.0
+offset_top = -89.0
+offset_right = 250.0
+offset_bottom = 89.0
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Resume" type="Button" parent="Hud/Menu/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_h107k")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vmve8")
+text = "Resume
+"
+
+[node name="Options" type="Button" parent="Hud/Menu/VBoxContainer"]
+layout_mode = 2
+text = "Options
+"
+
+[node name="Options2" type="Button" parent="Hud/Menu/VBoxContainer"]
+layout_mode = 2
+text = "Options
+"
 
 [node name="World" type="Node" parent="."]
 
@@ -80,7 +133,7 @@ shadow_enabled = true
 
 [node name="wall6" type="CSGBox3D" parent="Geo"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 2.5, -8.25)
-material_override = ExtResource("1_knnkr")
+material_override = ExtResource("4_wndho")
 use_collision = true
 size = Vector3(16, 5, 0.5)
 material = SubResource("StandardMaterial3D_a202f")
@@ -99,14 +152,14 @@ polygon = PackedVector2Array(2.5, 3.8, 3.5, 3.5, 4, 3, 4, 0, 0, 0, 0, 3, 0.5, 3.
 
 [node name="wall7" type="CSGBox3D" parent="Geo"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.25, 2.5, -16.25)
-material_override = ExtResource("1_knnkr")
+material_override = ExtResource("4_wndho")
 use_collision = true
 size = Vector3(15.5, 5, 0.5)
 material = SubResource("StandardMaterial3D_a202f")
 
 [node name="Floor" type="CSGBox3D" parent="Geo"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-material_override = ExtResource("1_knnkr")
+material_override = ExtResource("4_wndho")
 use_collision = true
 size = Vector3(48, 1, 48)
 material = SubResource("StandardMaterial3D_a202f")
@@ -120,35 +173,35 @@ material = SubResource("StandardMaterial3D_cptob")
 
 [node name="wall" type="CSGBox3D" parent="Geo/Floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -24.25)
-material_override = ExtResource("1_knnkr")
+material_override = ExtResource("4_wndho")
 use_collision = true
 size = Vector3(48, 6, 0.5)
 material = SubResource("StandardMaterial3D_a202f")
 
 [node name="wall2" type="CSGBox3D" parent="Geo/Floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 24.25)
-material_override = ExtResource("1_knnkr")
+material_override = ExtResource("4_wndho")
 use_collision = true
 size = Vector3(48, 6, 0.5)
 material = SubResource("StandardMaterial3D_a202f")
 
 [node name="wall3" type="CSGBox3D" parent="Geo/Floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 24.25)
-material_override = ExtResource("1_knnkr")
+material_override = ExtResource("4_wndho")
 use_collision = true
 size = Vector3(48, 6, 0.5)
 material = SubResource("StandardMaterial3D_a202f")
 
 [node name="wall4" type="CSGBox3D" parent="Geo/Floor"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24.25, 2.5, 0)
-material_override = ExtResource("1_knnkr")
+material_override = ExtResource("4_wndho")
 use_collision = true
 size = Vector3(48, 6, 0.5)
 material = SubResource("StandardMaterial3D_a202f")
 
 [node name="wall5" type="CSGBox3D" parent="Geo/Floor"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -29, 2.5, 2.07629e-07)
-material_override = ExtResource("1_knnkr")
+material_override = ExtResource("4_wndho")
 use_collision = true
 size = Vector3(48, 6, 10)
 material = SubResource("StandardMaterial3D_a202f")
@@ -164,7 +217,7 @@ depth = 7.0
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -15.7071, 2.5, 15.7071)
 use_collision = true
 size = Vector3(7, 5, 7)
-material = ExtResource("3_5emcc")
+material = ExtResource("6_eca5b")
 
 [node name="CSGBox3D7" type="CSGBox3D" parent="Geo/House"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
@@ -176,7 +229,7 @@ material = SubResource("StandardMaterial3D_jsk3o")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.125, 0)
 operation = 2
 size = Vector3(6.5, 2.75, 6.5)
-material = ExtResource("4_mtdkg")
+material = ExtResource("7_qvq5f")
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="Geo/House"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.375, -3.375)
@@ -210,20 +263,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -4)
 operation = 2
 polygon = PackedVector2Array(0, 0, -5, 2.5, 0, 2.5)
 depth = 2.0
-material = ExtResource("5_88f8e")
+material = ExtResource("8_dasy0")
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="Geo/Platform"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -1.25, -2.5)
 use_collision = true
 size = Vector3(2, 2.5, 7)
-material = ExtResource("5_88f8e")
+material = ExtResource("8_dasy0")
 
 [node name="CSGPolygon3D" type="CSGPolygon3D" parent="Geo/Platform/CSGBox3D5"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.125, -1.25, 3.5029)
 operation = 2
 polygon = PackedVector2Array(0, 0, 0, 2.5, 5, 2.5)
 depth = 3.0
-material = ExtResource("5_88f8e")
+material = ExtResource("8_dasy0")
 
 [node name="CSGPolygon3D2" type="CSGPolygon3D" parent="Geo/Platform"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, -2.5, 6.2)
@@ -241,16 +294,16 @@ depth = 3.0
 
 [node name="CapturePoints" type="Node" parent="."]
 
-[node name="ControlPoint" parent="CapturePoints" instance=ExtResource("6_u2084")]
+[node name="ControlPoint" parent="CapturePoints" instance=ExtResource("9_wy6ri")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 4.9, -16)
 
-[node name="ControlPoint2" parent="CapturePoints" instance=ExtResource("6_u2084")]
+[node name="ControlPoint2" parent="CapturePoints" instance=ExtResource("9_wy6ri")]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -10.0503, 0, 10.0503)
 
-[node name="ControlPoint3" parent="CapturePoints" instance=ExtResource("6_u2084")]
+[node name="ControlPoint3" parent="CapturePoints" instance=ExtResource("9_wy6ri")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, -4.76837e-07, -16)
 
-[node name="Character" parent="." instance=ExtResource("7_cg0vg")]
+[node name="Character" parent="." instance=ExtResource("10_nlly1")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1, 0)
 default_reticle = "uid://coqpusufa8a6k"
 controls = {
@@ -263,8 +316,6 @@ controls = {
 &"RIGHT": "move_R",
 &"SPRINT": "sprint"
 }
-
-[node name="Hud" parent="Character" instance=ExtResource("8_p7u7d")]
 
 [node name="stairs" type="CSGCombiner3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0.5)
@@ -312,8 +363,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
 [node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="stairs/StaticBody3D"]
 polygon = PackedVector2Array(1.5, -0.25, -6.5, 1.75, -6.5, 2, 1.5, 0)
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10_5emcc")
-volume_db = -16.0
+[node name="Audio" type="Node" parent="."]
 
-[connection signal="timeout" from="GameState/Timer" to="GameState" method="_on_timer_timeout"]
+[node name="Box 1kg" parent="." instance=ExtResource("12_tx4co")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, 1, 0.5)
+
+[node name="GameState" parent="." instance=ExtResource("12_h107k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+
+[editable path="Character"]
+[editable path="Box 1kg"]
+[editable path="GameState"]

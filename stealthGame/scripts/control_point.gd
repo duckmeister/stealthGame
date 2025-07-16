@@ -6,7 +6,7 @@ var timeOut = 1
 @onready var mesh_instance_3d: MeshInstance3D = $Area3D/MeshInstance3D
 @onready var trigger_timer: Timer = $Area3D/CollisionShape3D/triggerTimer
 @onready var progress_bar: TextureProgressBar = $Area3D/SubViewport/Control/TextureProgressBar
-@onready var game_state: Node = $"../../GameState"
+
 
 
 func _ready() -> void:
@@ -15,25 +15,27 @@ func _ready() -> void:
 
 func _on_trigger_timer_timeout() -> void:
 		#print ("TimeOut!")
-		game_state.add_point()
+		GameState.add_point()
 		timeOut = 0
 		area_3d.queue_free()
 
-func _on_area_3d_body_entered(_body: Node3D) -> void:
-	trigger_timer.start()
-	if timeOut == 0:
-		mesh_instance_3d.hide()
-	else:
-		mesh_instance_3d.show()
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	if body.is_in_group("Player"):
+		trigger_timer.start()
+		if timeOut == 0:
+			mesh_instance_3d.hide()
+		else:
+			mesh_instance_3d.show()
 
-func _on_area_3d_body_exited(_body: Node3D) -> void:
-	mesh_instance_3d.hide()
-	if timeOut == 0:
-		pass
-	else:
-		trigger_timer.stop()
+func _on_area_3d_body_exited(body: Node3D) -> void:
+	if body.is_in_group("Player"):
+		mesh_instance_3d.hide()
+		if timeOut == 0:
+			pass
+		else:
+			trigger_timer.stop()
 		
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if timeOut == 0:
 		pass
 	else:
