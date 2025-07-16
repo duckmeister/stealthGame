@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://cacvrjb0wpdqo"]
+
+[ext_resource type="Material" uid="uid://w4u0f1vksnwx" path="res://Mats/orange.tres" id="1_fttkb"]
+[ext_resource type="PackedScene" uid="uid://bc0tsqfptysm6" path="res://scenes/interaction_component.tscn" id="2_wy8tx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fxw34"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vxwa0"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="key" type="RigidBody3D" groups=["Key"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_fxw34")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = ExtResource("1_fttkb")
+mesh = SubResource("BoxMesh_vxwa0")
+
+[node name="InteractionComponent" parent="." node_paths=PackedStringArray("obj_ref") instance=ExtResource("2_wy8tx")]
+obj_ref = NodePath("..")

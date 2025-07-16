@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dihw38na1f5dm"]
+[gd_scene load_steps=26 format=3 uid="uid://dihw38na1f5dm"]
 
 [ext_resource type="PackedScene" uid="uid://cspfs15rdcr2s" path="res://scenes/hud.tscn" id="2_tx4co"]
 [ext_resource type="Theme" uid="uid://30kh5fc6q7p8" path="res://UI/ui_theme.tres" id="3_h107k"]
@@ -60,6 +60,25 @@ albedo_color = Color(0, 0, 0, 1)
 albedo_color = Color(0.687215, 0.687215, 0.687215, 1)
 albedo_texture = ExtResource("5_lhmk6")
 uv1_triplanar = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yl7kl"]
+size = Vector3(1, 0.2, 1)
+
+[sub_resource type="Animation" id="Animation_tx4co"]
+resource_name = "gate_open"
+length = 5.0
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -24.6, 1.9, 0, 5, 1, -24.6, 4.8, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wndho"]
+_data = {
+&"gate_open": SubResource("Animation_tx4co")
+}
 
 [node name="Main" type="Node3D"]
 
@@ -172,10 +191,10 @@ size = Vector3(8, 0.167969, 48)
 material = SubResource("StandardMaterial3D_cptob")
 
 [node name="wall" type="CSGBox3D" parent="Geo/Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -24.25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, -24.25)
 material_override = ExtResource("4_wndho")
 use_collision = true
-size = Vector3(48, 6, 0.5)
+size = Vector3(48, 15, 0.5)
 material = SubResource("StandardMaterial3D_a202f")
 
 [node name="wall2" type="CSGBox3D" parent="Geo/Floor"]
@@ -200,21 +219,21 @@ size = Vector3(48, 6, 0.5)
 material = SubResource("StandardMaterial3D_a202f")
 
 [node name="wall5" type="CSGBox3D" parent="Geo/Floor"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -29, 2.5, 2.07629e-07)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -29, 7, 2.07629e-07)
 material_override = ExtResource("4_wndho")
 use_collision = true
-size = Vector3(48, 6, 10)
+size = Vector3(48, 15, 10)
 material = SubResource("StandardMaterial3D_a202f")
 
 [node name="CSGPolygon3D6" type="CSGPolygon3D" parent="Geo/Floor/wall5"]
-transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -1.75, -2, 5.25)
+transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, -2, -6.5, 5)
 operation = 2
 calculate_tangents = false
 polygon = PackedVector2Array(2.5, 3.8, 3.5, 3.5, 4, 3, 4, 0, 0, 0, 0, 3, 0.5, 3.5, 1.5, 3.8)
 depth = 7.0
 
 [node name="House" type="CSGBox3D" parent="Geo"]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -15.7071, 2.5, 15.7071)
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -15.75, 2.5, 15.75)
 use_collision = true
 size = Vector3(7, 5, 7)
 material = ExtResource("6_eca5b")
@@ -292,6 +311,64 @@ calculate_tangents = false
 polygon = PackedVector2Array(2.5, 3.8, 3.5, 3.5, 4, 3, 4, 0, 0, 0, 0, 3, 0.5, 3.5, 1.5, 3.8)
 depth = 3.0
 
+[node name="stairs" type="CSGCombiner3D" parent="Geo"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -10.4797, 0, 16.1366)
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Geo/stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.125, 0)
+size = Vector3(1, 0.25, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Geo/stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.375, 0)
+size = Vector3(1, 0.25, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Geo/stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.625, 0)
+size = Vector3(1, 0.25, 1)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Geo/stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.625, 0)
+size = Vector3(1, 0.25, 1)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Geo/stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0.875, 0)
+size = Vector3(1, 0.25, 1)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Geo/stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 1.125, 0)
+size = Vector3(1, 0.25, 1)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Geo/stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 1.375, 0)
+size = Vector3(1, 0.25, 1)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Geo/stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 1.625, 0)
+size = Vector3(1, 0.25, 1)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Geo/stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 1.875, 0)
+size = Vector3(1, 0.25, 1)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Geo/stairs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Geo/stairs/StaticBody3D"]
+polygon = PackedVector2Array(1.5, -0.25, -6.5, 1.75, -6.5, 2, 1.5, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Geo"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0.5, 16)
+material_override = ExtResource("8_dasy0")
+use_collision = true
+size = Vector3(4, 1, 4)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Geo"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 2, 16)
+material_override = ExtResource("8_dasy0")
+use_collision = true
+size = Vector3(1, 2, 1)
+
 [node name="CapturePoints" type="Node" parent="."]
 
 [node name="ControlPoint" parent="CapturePoints" instance=ExtResource("9_wy6ri")]
@@ -304,7 +381,7 @@ transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, -4.76837e-07, -16)
 
 [node name="Character" parent="." instance=ExtResource("10_nlly1")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 14.9, 1, 11.5)
 default_reticle = "uid://coqpusufa8a6k"
 controls = {
 &"BACKWARD": "move_B",
@@ -317,60 +394,118 @@ controls = {
 &"SPRINT": "sprint"
 }
 
-[node name="stairs" type="CSGCombiner3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 0.5)
-use_collision = true
-
-[node name="CSGBox3D" type="CSGBox3D" parent="stairs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.125, 0)
-size = Vector3(1, 0.25, 1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="stairs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.375, 0)
-size = Vector3(1, 0.25, 1)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="stairs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.625, 0)
-size = Vector3(1, 0.25, 1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="stairs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.625, 0)
-size = Vector3(1, 0.25, 1)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="stairs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0.875, 0)
-size = Vector3(1, 0.25, 1)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="stairs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 1.125, 0)
-size = Vector3(1, 0.25, 1)
-
-[node name="CSGBox3D7" type="CSGBox3D" parent="stairs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 1.375, 0)
-size = Vector3(1, 0.25, 1)
-
-[node name="CSGBox3D8" type="CSGBox3D" parent="stairs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 1.625, 0)
-size = Vector3(1, 0.25, 1)
-
-[node name="CSGBox3D9" type="CSGBox3D" parent="stairs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 1.875, 0)
-size = Vector3(1, 0.25, 1)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="stairs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
-
-[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="stairs/StaticBody3D"]
-polygon = PackedVector2Array(1.5, -0.25, -6.5, 1.75, -6.5, 2, 1.5, 0)
-
 [node name="Audio" type="Node" parent="."]
 
 [node name="Box 1kg" parent="." instance=ExtResource("12_tx4co")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, 1, 0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.25, 0.75, -9.25)
+
+[node name="Box 1kg3" parent="." instance=ExtResource("12_tx4co")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.25, 1.75, -9.75)
+
+[node name="Box 1kg2" parent="." instance=ExtResource("12_tx4co")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0.75, -10.5)
 
 [node name="GameState" parent="." instance=ExtResource("12_h107k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 
+[node name="EXIT" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.5, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EXIT"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.90735e-06, 1.9, -2.98023e-07)
+shape = SubResource("BoxShape3D_yl7kl")
+
+[node name="keySlot" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0, -3)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="keySlot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.90735e-06, 0.0500003, -2.38419e-07)
+shape = SubResource("BoxShape3D_yl7kl")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="keySlot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+material_override = ExtResource("6_eca5b")
+use_collision = true
+size = Vector3(1, 0.1, 1)
+
+[node name="gate" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.6, 1.9, 0)
+use_collision = true
+size = Vector3(0.2, 3.8, 4)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="gate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, -1.8)
+operation = 2
+size = Vector3(0.4, 2.8, 0.2)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="gate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, -1.5)
+operation = 2
+size = Vector3(0.4, 2.8, 0.2)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="gate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, -1.2)
+operation = 2
+size = Vector3(0.4, 2.8, 0.2)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="gate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, -0.9)
+operation = 2
+size = Vector3(0.4, 2.8, 0.2)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="gate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, -0.6)
+operation = 2
+size = Vector3(0.4, 2.8, 0.2)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="gate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, -0.3)
+operation = 2
+size = Vector3(0.4, 2.8, 0.2)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="gate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
+operation = 2
+size = Vector3(0.4, 2.8, 0.2)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="gate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0.3)
+operation = 2
+size = Vector3(0.4, 2.8, 0.2)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="gate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0.6)
+operation = 2
+size = Vector3(0.4, 2.8, 0.2)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="gate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0.9)
+operation = 2
+size = Vector3(0.4, 2.8, 0.2)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="gate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 1.2)
+operation = 2
+size = Vector3(0.4, 2.8, 0.2)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="gate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 1.5)
+operation = 2
+size = Vector3(0.4, 2.8, 0.2)
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="gate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 1.8)
+operation = 2
+size = Vector3(0.4, 2.8, 0.2)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="gate"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_wndho")
+}
+
+[connection signal="body_entered" from="EXIT" to="GameState" method="_on_exit_body_entered"]
+[connection signal="body_entered" from="keySlot" to="GameState" method="_on_key_slot_body_entered"]
+
 [editable path="Character"]
-[editable path="Box 1kg"]
 [editable path="GameState"]

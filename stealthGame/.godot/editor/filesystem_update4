@@ -10,3 +10,4 @@ res://scripts/game_state.gd
 res://scenes/game_state_win.gd
 res://scripts/interaction_component.gd
 res://default_bus_layout.tres
+res://scenes/key.tscn

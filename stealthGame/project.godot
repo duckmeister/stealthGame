@@ -15,6 +15,10 @@ run/main_scene="uid://brcmhd3j62xb6"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout=""
+
 [autoload]
 
 GameState="*res://scripts/game_state.gd"
@@ -39,6 +43,7 @@ enabled=PackedStringArray("res://addons/bad.multiplayer/plugin.cfg")
 [global_group]
 
 Player=""
+Key=""
 
 [input]
 
